@@ -48,6 +48,7 @@ CREATE TABLE `user_accounts` (
 	`identifier` varchar(22) NOT NULL,
 	`name` varchar(50) NOT NULL,
 	`money` double NOT NULL DEFAULT '0',
+	`totalMoneyEverMade` double NOT NULL DEFAULT '0'
 
 	PRIMARY KEY (`id`)
 );

@@ -12,6 +12,18 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 	self.source     = self.player.get('source')
 	self.identifier = self.player.get('identifier')
 
+	self.getTotalMoneyEverMade = function()
+		local totalMoney = 0
+		for i=1, #Config.Accounts, 1 do
+			for j=1, #accounts, 1 do
+				if accounts[j].name == Config.Accounts[i] then
+						totalMoney = totalMoney + accounts[j].totalMoneyEverMade
+				end
+			end
+		end
+		return totalMoney
+	end
+
 	self.setMoney = function(money)
 		money = ESX.Math.Round(money)
 

@@ -35,12 +35,12 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 							table.insert(userData.accounts, {
 								name  = accounts[j].name,
 								money = accounts[j].money,
+								totalMoneyEverMade = accounts[j].totalMoneyEverMade,
 								label = Config.AccountLabels[accounts[j].name]
 							})
 						end
 					end
 				end
-
 				cb()
 			end)
 		end)
@@ -152,7 +152,7 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 						if gradeObject.skin_male ~= nil then
 							userData.job.skin_male = json.decode(gradeObject.skin_male)
 						end
-			
+
 						if gradeObject.skin_female ~= nil then
 							userData.job.skin_female = json.decode(gradeObject.skin_female)
 						end
@@ -167,12 +167,12 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 						userData.job.id    = jobObject.id
 						userData.job.name  = jobObject.name
 						userData.job.label = jobObject.label
-			
+
 						userData.job.grade        = tonumber(grade)
 						userData.job.grade_name   = gradeObject.name
 						userData.job.grade_label  = gradeObject.label
 						userData.job.grade_salary = gradeObject.salary
-			
+
 						userData.job.skin_male    = {}
 						userData.job.skin_female  = {}
 					end
@@ -290,7 +290,7 @@ AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCo
 			else
 				sourceXPlayer.removeInventoryItem(itemName, itemCount)
 				targetXPlayer.addInventoryItem   (itemName, itemCount)
-				
+
 				TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
 				TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
 			end
@@ -522,7 +522,8 @@ ESX.RegisterServerCallback('esx:getOtherPlayerData', function(source, cb, target
 		job          = xPlayer.getJob(),
 		loadout      = xPlayer.getLoadout(),
 		lastPosition = xPlayer.getLastPosition(),
-		money        = xPlayer.getMoney()
+		money        = xPlayer.getMoney(),
+		totalMoneyEverMade = xPlayer.getTotalMoneyEverMade()
 	})
 end)
 
