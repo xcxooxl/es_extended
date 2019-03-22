@@ -140,12 +140,10 @@ AddEventHandler('es:playerLoaded', function(source, _player)
 						userData.job.id    = jobObject.id
 						userData.job.name  = jobObject.name
 						userData.job.label = jobObject.label
-
 						userData.job.grade        = tonumber(grade)
 						userData.job.grade_name   = gradeObject.name
 						userData.job.grade_label  = gradeObject.label
 						userData.job.grade_salary = gradeObject.salary
-
 						userData.job.skin_male    = {}
 						userData.job.skin_female  = {}
 
@@ -290,7 +288,6 @@ AddEventHandler('esx:giveInventoryItem', function(target, type, itemName, itemCo
 			else
 				sourceXPlayer.removeInventoryItem(itemName, itemCount)
 				targetXPlayer.addInventoryItem   (itemName, itemCount)
-
 				TriggerClientEvent('esx:showNotification', _source, _U('gave_item', itemCount, ESX.Items[itemName].label, targetXPlayer.name))
 				TriggerClientEvent('esx:showNotification', target,  _U('received_item', itemCount, ESX.Items[itemName].label, sourceXPlayer.name))
 			end
