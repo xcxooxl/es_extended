@@ -17,6 +17,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.setMoney(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"setCash")
+			TriggerServerEvent('esx:onSetMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried setting -1 cash balance)'):format(self.identifier))
 		end
@@ -31,6 +33,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.setBankBalance(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"setBankBalance")
+			TriggerServerEvent('esx:onSetMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried setting -1 bank balance)'):format(self.identifier))
 		end
