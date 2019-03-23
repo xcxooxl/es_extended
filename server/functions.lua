@@ -46,8 +46,9 @@ ESX.SavePlayer = function(xPlayer, cb)
 		if ESX.LastPlayerData[xPlayer.source].accounts[xPlayer.accounts[i].name] ~= xPlayer.accounts[i].money then
 
 			table.insert(asyncTasks, function(cb)
-				MySQL.Async.execute('UPDATE user_accounts SET `money` = @money WHERE identifier = @identifier AND name = @name', {
+				MySQL.Async.execute('UPDATE user_accounts SET `money` = @money,`totalMoneyEverMade` = @totalMoneyEverMade WHERE identifier = @identifier AND name = @name', {
 					['@money']      = xPlayer.accounts[i].money,
+					['@totalMoneyEverMade'] = xPlayer.accounts[i].totalMoneyEverMade,
 					['@identifier'] = xPlayer.identifier,
 					['@name']       = xPlayer.accounts[i].name
 				}, function(rowsChanged)
