@@ -57,6 +57,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.addMoney(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"cash")
+			TriggerServerEvent('esx:onAddMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried adding -1 cash balance)'):format(self.identifier))
 		end
@@ -67,6 +69,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.removeMoney(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"cash")
+			TriggerServerEvent('esx:onRemoveMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried removing -1 cash balance)'):format(self.identifier))
 		end
@@ -77,6 +81,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.addBank(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"bank")
+			TriggerServerEvent('esx:onAddMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried adding -1 bank balance)'):format(self.identifier))
 		end
@@ -87,6 +93,8 @@ function CreateExtendedPlayer(player, accounts, inventory, job, loadout, name, l
 
 		if money >= 0 then
 			self.player.removeBank(money)
+			local transactionData = ESX.CreateMoneyTransaction(self.source,money,"bank")
+			TriggerServerEvent('esx:onRemoveMoney', transactionData)
 		else
 			print(('es_extended: %s attempted exploiting! (reason: player tried removing -1 bank balance)'):format(self.identifier))
 		end

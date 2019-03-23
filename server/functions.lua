@@ -195,3 +195,11 @@ ESX.DoesJobExist = function(job, grade)
 
 	return false
 end
+
+ESX.CreateMoneyTransaction = function (source, money, type)
+	local transactionData = {}
+	transactionData.source = source
+	transactionData.money = money
+	transactionData.type = type
+	return transactionData
+end
